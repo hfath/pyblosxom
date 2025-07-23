@@ -380,10 +380,10 @@ class BlosxomRenderer(RendererBase):
         entry = dict(args["entry"])
         for k, v in list(entry.items()):
             if isinstance(v, str):
-                entry[k] = v.replace(r"\$", r"\\$")
+                entry[k] = v.replace(r"$", r"\$")
 
         finaltext = tools.parse(self._request, entry, template)
-        return bytes(finaltext.replace(r'\$', '$'),'UTF-8')
+        return finaltext.replace(r'\$', '$')
 
     renderTemplate = tools.deprecated_function(render_template)
 
