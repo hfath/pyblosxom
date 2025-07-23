@@ -74,7 +74,7 @@ Available variables in the category_item template:
 =======================  ==========================  ====================
 variable                 example                     datatype
 =======================  ==========================  ====================
-base_url                 http://joe.com/blog/        string
+base_url                 https://joe.com/blog/        string
 fullcategory_urlencoded  'dev/pyblosxom/status/'     string
 fullcategory             'dev/pyblosxom/status/'     string (urlencoded)
 category                 'status/'                   string
@@ -88,7 +88,7 @@ indent                   '&nbsp;&nbsp;&nbsp;&nbsp;'  string
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "$Id$"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Builds a list of categories."
 __category__ = "category"
 __license__ = "MIT"

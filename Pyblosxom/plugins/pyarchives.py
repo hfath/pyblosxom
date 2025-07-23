@@ -67,7 +67,7 @@ Add ``$(archivelinks)`` to your head and/or foot templates.
 __author__ = "Wari Wahab"
 __email__ = "wari at wari dot per dot sg"
 __version__ = "2011-10-22"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Builds month/year-based archives listing."
 __category__ = "archives"
 __license__ = "MIT"
@@ -96,7 +96,7 @@ class PyblArchives:
 
     @memcache_decorator('pyarchives', True)
     def __str__(self):
-        if self._archives == None:
+        if self._archives is None:
             self.gen_linear_archive()
         return self._archives
 

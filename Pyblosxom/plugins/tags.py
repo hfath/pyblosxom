@@ -254,7 +254,7 @@ from anywhere.
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "2015-06-14"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Tags plugin"
 __category__ = "tags"
 __license__ = "MIT"
@@ -459,7 +459,7 @@ def cb_filelist(args):
     args = {"request": req, "entry_list": entrylist}
     entrylist = tools.run_callback("truncatelist",
                                    args,
-                                   donefunc=lambda x: x != None,
+                                   donefunc=lambda x: x is not None,
                                    defaultfunc=blosxom_truncate_list_handler)
 
     return entrylist

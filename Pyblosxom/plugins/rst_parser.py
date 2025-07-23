@@ -13,9 +13,9 @@ Summary
 =======
 
 A reStructuredText entry formatter for pyblosxom.  reStructuredText is
-part of the docutils project (http://docutils.sourceforge.net/).  To
+part of the docutils project (https://docutils.sourceforge.net/).  To
 use, you need a *recent* version of docutils.  A development snapshot
-(http://docutils.sourceforge.net/#development-snapshots) will work
+(https://docutils.sourceforge.net/#development-snapshots) will work
 fine.
 
 
@@ -28,7 +28,7 @@ This plugin comes with Pyblosxom.  To install, do the following:
    in your ``config.py`` file.
 
 2. Install docutils.  Instructions are at
-   http://docutils.sourceforge.net/
+   https://docutils.sourceforge.net/
 
 
 Usage
@@ -75,7 +75,7 @@ control over the rendered HTML::
 __author__ = "Sean Bowman"
 __email__ = "sean dot bowman at acm dot org"
 __version__ = "2011-10-23"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "restructured text support for blog entries"
 __category__ = "text"
 __license__ = "MIT"

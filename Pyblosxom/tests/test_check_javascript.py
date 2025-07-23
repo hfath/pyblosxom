@@ -12,7 +12,7 @@ Tests for the check_javascript plugin.
 """
 
 __author__ = 'Ryan Barrett <pyblosxom@ryanb.org>'
-__url__ = 'http://pyblosxom.github.com/wiki/index.php/Framework_for_testing_plugins'
+__url__ = 'https://pyblosxom.github.com/wiki/index.php/Framework_for_testing_plugins'
 
 from Pyblosxom.tests import PluginTest
 from Pyblosxom.plugins import check_javascript

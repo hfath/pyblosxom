@@ -29,7 +29,7 @@ This plugin comes with Pyblosxom.  To install, do the following:
 2. Set ``disqus_shortname`` in your ``config.py`` file.  This comes from
    Disqus when you set up your account.
 
-   For help, see http://docs.disqus.com/help/2/ .
+   For help, see https://docs.disqus.com/help/2/ .
 
 3. Save the ``comment_form`` template into your html flavour.
 
@@ -47,22 +47,22 @@ comment_form template::
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] ||
          document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();
     </script>
     <noscript>Please enable JavaScript to view the
-      <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+      <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
     </noscript>
-    <a href="http://disqus.com" class="dsq-brlink"
+    <a href="https://disqus.com" class="dsq-brlink"
       >blog comments powered by <span class="logo-disqus">Disqus</span></a>
 """
 
 __author__ = "Blake Winton"
 __email__ = "willg at bluesock dot org"
 __version__ = "2011-12-12"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Lets me use Disqus for comments."
 __category__ = "comments"
 __license__ = "MIT"

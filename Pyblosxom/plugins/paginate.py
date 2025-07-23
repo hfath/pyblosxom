@@ -135,7 +135,7 @@ that contains "_page".
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "2015-06-29"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = (
     "Allows navigation by page for indexes that have too many entries.")
 __category__ = "display"

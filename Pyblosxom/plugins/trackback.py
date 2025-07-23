@@ -12,7 +12,7 @@ Summary
 =======
 
 This plugin allows pyblosxom to process trackback
-http://www.sixapart.com/pronet/docs/trackback_spec pings.
+https://www.sixapart.com/pronet/docs/trackback_spec pings.
 
 
 Install
@@ -33,8 +33,8 @@ This plugin comes with Pyblosxom.  To install, do the following:
    These web forms are useful for testing.  You can use them to send
    trackback pings with arbitrary content to the URL of your choice:
 
-   * http://kalsey.com/tools/trackback/
-   * http://www.reedmaniac.com/scripts/trackback_form.php
+   * https://kalsey.com/tools/trackback/
+   * https://www.reedmaniac.com/scripts/trackback_form.php
 
 3. Now you need to advertise the trackback ping link.  Add this to your
    ``story`` template::
@@ -47,8 +47,8 @@ This plugin comes with Pyblosxom.  To install, do the following:
        <!--
        <rdf:RDF
        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-       xmlns:dc="http://purl.org/dc/elements/1.1/"
-       xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+       xmlns:dc="https://purl.org/dc/elements/1.1/"
+       xmlns:trackback="https://madskills.com/public/xml/rss/module/trackback/">
        <rdf:Description
             about="$(base_url)/$(file_path)"
             dc:title="$(title)"
@@ -63,7 +63,7 @@ This plugin comes with Pyblosxom.  To install, do the following:
 __author__ = "Ted Leung"
 __email__ = ""
 __version__ = ""
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Trackback support."
 __category__ = "comments"
 __license__ = "MIT"
@@ -113,8 +113,8 @@ def cb_handle(args):
 
         form = request.get_form()
 
-        message = ("A trackback must have at least a URL field (see "
-                   "http://www.sixapart.com/pronet/docs/trackback_spec)")
+        message = (
+            "A trackback must have at least a URL field (see https://www.sixapart.com/pronet/docs/trackback_spec)")
 
         if "url" in form:
             from .comments import decode_form

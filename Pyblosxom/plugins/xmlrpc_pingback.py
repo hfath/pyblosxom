@@ -12,7 +12,7 @@ Summary
 =======
 
 This module contains an XML-RPC extension to support pingback
-http://www.hixie.ch/specs/pingback/pingback pings.
+https://www.hixie.ch/specs/pingback/pingback pings.
 
 
 Install
@@ -40,7 +40,7 @@ This test blog, maintained by Ian Hickson, is useful for testing. You
 can post to it, linking to a post on your site, and it will send a
 pingback.
 
-* http://www.dummy-blog.org/
+* https://www.dummy-blog.org/
 
 """
 from Pyblosxom.blosxom import blosxom_file_list_handler, blosxom_process_path_info
@@ -48,7 +48,7 @@ from Pyblosxom.blosxom import blosxom_file_list_handler, blosxom_process_path_in
 __author__ = "Ted Leung, Ryan Barrett"
 __email__ = ""
 __version__ = "2011-10-28"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "XMLRPC pingback support."
 __category__ = "comments"
 __license__ = "MIT"
@@ -72,7 +72,7 @@ def verify_installation(request):
 
 class parser(sgmllib.SGMLParser):
     """ Shamelessly grabbed from Sam Ruby
-    from http://www.intertwingly.net/code/mombo/pingback.py
+    from https://www.intertwingly.net/code/mombo/pingback.py
     """
     intitle = 0
     title = ""

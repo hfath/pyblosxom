@@ -65,7 +65,7 @@ It uses the following CSS classes:
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "2011-10-23"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Displays a calendar on your blog."
 __category__ = "date"
 __license__ = "Public domain"
@@ -101,7 +101,7 @@ class PyblCalendar:
         """
         Returns the on-demand generated string.
         """
-        if self._cal == None:
+        if self._cal is None:
             self.generate_calendar()
 
         return self._cal

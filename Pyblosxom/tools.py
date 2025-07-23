@@ -1043,7 +1043,7 @@ class LogFilter(object):
 
         :param names: list of strings to filter out
         """
-        if names == None:
+        if names is None:
             names = []
         self.names = names
 

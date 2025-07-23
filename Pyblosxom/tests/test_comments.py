@@ -523,7 +523,7 @@ class TestComments(PluginTest):
             'body': 'body=with"chars',
             'author': 'author',
             'title': 'title',
-            'url': 'http://snarfed.org/',
+            'url': 'https://snarfed.org/',
             'email': 'pyblosxom@ryanb.org',
             }
 

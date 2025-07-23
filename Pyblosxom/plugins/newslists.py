@@ -46,7 +46,7 @@ categories that are prefixed with "X" are left out of the default
 view, but shown in a preview mode. To access preview pages, prepend
 the keyword "preview" to the URL path:
 
-  http://myblog.com/preview/index.html
+  https://myblog.com/preview/index.html
 
 Preview mode affects only "newslists" lists and items; the prefix
 stub is otherwise ignored.
@@ -109,7 +109,7 @@ string templates in the plugin directly.
 __author__ = "Frank Bennett"
 __email__ = "bennett at nagoya-u ac jp"
 __version__ = "$Id$"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Builds headline lists for three categories."
 __category__ = "category"
 __license__ = "MIT"
@@ -292,7 +292,7 @@ class GetNewsList:
         self.gen_news_list()
 
     def __str__(self):
-        if self._news_list == None:
+        if self._news_list is None:
             self.gen_news_list()
         return self._news_list
 

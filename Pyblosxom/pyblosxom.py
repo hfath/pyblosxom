@@ -591,7 +591,7 @@ class Request(object):
         cause iter looks for the method in the class instead of the
         instance.
 
-        See http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/252151
+        See https://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/252151
         """
         return self._in
 
@@ -765,7 +765,7 @@ class Response(object):
         class instead of the instance.
 
         See
-        http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/252151
+        https://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/252151
         """
         return self._out
 

@@ -46,7 +46,7 @@ class UnitTestBase(unittest.TestCase):
         self.assertEqual(a, b, text)
 
     def get_temp_dir(self):
-        if self._tempdir == None:
+        if self._tempdir is None:
             self._tempdir = tempfile.mkdtemp()
         return self._tempdir
 
@@ -94,7 +94,7 @@ class UnitTestBase(unittest.TestCase):
         _config = {"default_flavour": "html",
                    "datadir": os.path.join(self.get_temp_dir(), "entries"),
                    "blog_title": "Joe's blog",
-                   "base_url": "http://www.example.com/"}
+                   "base_url": "https://www.example.com/"}
         if cfg:
             _config.update(cfg)
 

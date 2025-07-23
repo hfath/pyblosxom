@@ -22,7 +22,7 @@
 Summary
 =======
 
-Run comments and trackbacks through `Akismet <http://akismet.com/>`_
+Run comments and trackbacks through `Akismet <https://akismet.com/>`_
 to see whether to reject them or not.
 
 
@@ -37,10 +37,10 @@ This plugin comes with Pyblosxom.  To install, do the following:
    list in your ``config.py`` file.
 
 2. Install the ``akismet`` library.  You can get it at
-   http://www.voidspace.org.uk/python/modules.shtml#akismet
+   https://www.voidspace.org.uk/python/modules.shtml#akismet
 
 3. Set up a Wordpress.com API key.  You can find more information from
-   http://faq.wordpress.com/2005/10/19/api-key/ .
+   https://faq.wordpress.com/2005/10/19/api-key/ .
 
 4. Use this key to put put the following line into your config.py
    file::
@@ -65,7 +65,7 @@ Hill.
 __author__ = "Benjamin Mako Hill"
 __version__ = "0.2"
 __email__ = ""
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Rejects comments using akismet"
 __category__ = "comments"
 __license__ = "GPLv2"
@@ -153,7 +153,7 @@ def cb_comment_reject(args):
             pwrap_error("Rejecting comment")
             return (True,
                     'I\'m sorry, but your comment was rejected by '
-                    'the <a href="http://akismet.com/">Akismet</a> '
+                    'the <a href="https://akismet.com/">Akismet</a> '
                     'spam filtering system.')
         else:
             return False

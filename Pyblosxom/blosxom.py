@@ -227,13 +227,13 @@ def blosxom_file_list_handler(args):
     args = {"request": request, "entry_list": entry_list}
     entry_list = tools.run_callback("sortlist",
                                     args,
-                                    donefunc=lambda x: x != None,
+                                    donefunc=lambda x: x is not None,
                                     defaultfunc=blosxom_sort_list_handler)
 
     args = {"request": request, "entry_list": entry_list}
     entry_list = tools.run_callback("truncatelist",
                                     args,
-                                    donefunc=lambda x: x != None,
+                                    donefunc=lambda x: x is not None,
                                     defaultfunc=blosxom_truncate_list_handler)
 
     return entry_list

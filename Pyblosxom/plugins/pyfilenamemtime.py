@@ -22,7 +22,7 @@ For example, a valid filename would be ``foo-2002-04-01-00-00.txt``
 for April fools day on the year 2002.  It is also possible to use
 timestamps in the form of ``YYYY-MM-DD``.
 
-http://www.probo.com/timr/blog/
+https://www.probo.com/timr/blog/
 
 
 Install
@@ -40,7 +40,7 @@ This plugin comes with Pyblosxom.  To install, do the following:
 __author__ = "Tim Roberts"
 __email__ = ""
 __version__ = "2011-10-23"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Allows you to codify the mtime in the filename."
 __category__ = "date"
 __license__ = "MIT"

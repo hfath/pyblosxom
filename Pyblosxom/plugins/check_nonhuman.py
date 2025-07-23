@@ -76,13 +76,13 @@ And that's it!
 
 The idea came from::
 
-   http://www.davidpashley.com/cgi/pyblosxom.cgi/2006/04/28#blog-spam
+   https://www.davidpashley.com/cgi/pyblosxom.cgi/2006/04/28#blog-spam
 """
 
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "2011-10-25"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Rejects non-human comments."
 __category__ = "comments"
 __license__ = "MIT"

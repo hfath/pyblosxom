@@ -198,6 +198,7 @@ in the entry file:
 
 .. code-block:: html
 
+   <img src="https://static.example.com/image.jpeg" />
    <img src="http://static.example.com/image.jpeg" />
 
 .. note::

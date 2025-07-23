@@ -216,9 +216,9 @@ class Testpathinfo(UnitTestBase):
         self.setup_files(entries)
 
         try:
-            self._basic_test("/", {"url": "http://www.example.com/"})
-            self._basic_test("/index.xml", {"url": "http://www.example.com/index.xml"})
-            self._basic_test("/cata/index.foo", {"url": "http://www.example.com/cata/index.foo"})
+            self._basic_test("/", {"url": "https://www.example.com/"})
+            self._basic_test("/index.xml", {"url": "https://www.example.com/index.xml"})
+            self._basic_test("/cata/index.foo", {"url": "https://www.example.com/cata/index.foo"})
 
         finally:
             self.tearDown()

@@ -121,13 +121,13 @@ This is based on the original readmore plugin written by IWS years
 ago.  It's since been reworked.
 
 Additionally, I folded in the rst_break plugin break directive from
-Menno Smits at http://freshfoo.com/wiki/CodeIndex .
+Menno Smits at https://freshfoo.com/wiki/CodeIndex .
 """
 
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "2011-11-05"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Breaks blog entries into summary and details"
 __category__ = "display"
 __license__ = "MIT"

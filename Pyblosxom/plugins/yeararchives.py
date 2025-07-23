@@ -76,7 +76,7 @@ The vars available with typical example values are::
 __author__ = "Will Kahn-Greene"
 __email__ = "willg at bluesock dot org"
 __version__ = "2010-05-08"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Builds year-based archives listing."
 __category__ = "archives"
 __license__ = "MIT"
@@ -246,7 +246,7 @@ def cb_filelist(args):
     path = pyhttp["PATH_INFO"]
 
     ret = parse_path_info(path)
-    if ret == None:
+    if ret is None:
         return
 
     # note: returned flavour is None if there is no .flav appendix

@@ -166,7 +166,7 @@ Related files
 .. only:: text
 
    You can find the comment-story file in the docs at
-   http://pyblosxom.github.com/ or in the tarball under
+   https://pyblosxom.github.com/ or in the tarball under
    docs/_static/plugins/comments/.
 
 
@@ -208,7 +208,7 @@ Variables available:
 .. only:: text
 
    You can find the comment-story file in the docs at
-   http://pyblosxom.github.com/ or in the tarball under
+   https://pyblosxom.github.com/ or in the tarball under
    docs/_static/plugins/comments/.
 
 
@@ -240,7 +240,7 @@ Variables available::
 .. only:: text
 
    You can find the comment-story file in the docs at
-   http://pyblosxom.github.com/ or in the tarball under
+   https://pyblosxom.github.com/ or in the tarball under
    docs/_static/plugins/comments/.
 
 
@@ -259,7 +259,7 @@ comment form used to enter new comments.
 .. only:: text
 
    You can find the comment-story file in the docs at
-   http://pyblosxom.github.com/ or in the tarball under
+   https://pyblosxom.github.com/ or in the tarball under
    docs/_static/plugins/comments/.
 
 
@@ -339,7 +339,7 @@ If you would like comment previews, you need to do 2 things.
 .. only:: text
 
    You can find the comment-story file in the docs at
-   http://pyblosxom.github.com/ or in the tarball under
+   https://pyblosxom.github.com/ or in the tarball under
    docs/_static/plugins/comments/.
 
 
@@ -457,7 +457,7 @@ entry.
 __author__ = "Ted Leung, et al"
 __email__ = "pyblosxom-devel at sourceforge dot net"
 __version__ = "2011-12-17"
-__url__ = "http://pyblosxom.github.com/"
+__url__ = "https://pyblosxom.github.com/"
 __description__ = "Adds comments to a blog entry."
 __category__ = "comments"
 __license__ = "MIT"
@@ -548,7 +548,7 @@ def createhtmlmail(html, headers):
     Create a mime-message that will render HTML in popular
     MUAs, text in better ones
 
-    Based on: http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/67083
+    Based on: https://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/67083
     """
     import MimeWriter
     import mimetools
@@ -1051,7 +1051,7 @@ def cb_prepare(args):
 
     # check to see if they have "showcomments=yes" in the querystring
     qstr = py_http.get('QUERY_STRING', None)
-    if qstr != None:
+    if qstr is not None:
         parsed_qs = cgi.parse_qs(qstr)
         if 'showcomments' in parsed_qs:
             if parsed_qs['showcomments'][0] == 'yes':
@@ -1208,12 +1208,12 @@ def cb_handle(args):
 
 
 def massage_link(linkstring):
-    """Don't allow html in the link string. Prepend http:// if there isn't
+    """Don't allow html in the link string. Prepend https:// if there isn't
     already a protocol."""
     for c in "<>'\"":
         linkstring = linkstring.replace(c, '')
     if linkstring and linkstring.find(':') == -1:
-        linkstring = 'http://' + linkstring
+        linkstring = 'https://' + linkstring
     return linkstring
 
 

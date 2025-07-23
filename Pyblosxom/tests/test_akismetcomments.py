@@ -12,7 +12,7 @@ Tests for the akismetcomments plugin.
 """
 
 __author__ = 'Ryan Barrett <pyblosxom@ryanb.org>'
-__url__ = 'http://pyblosxom.github.com/wiki/index.php/Framework_for_testing_plugins'
+__url__ = 'https://pyblosxom.github.com/wiki/index.php/Framework_for_testing_plugins'
 
 from Pyblosxom.tests import PluginTest
 from Pyblosxom.plugins import akismetcomments
@@ -137,6 +137,6 @@ class TestAkismetComments(PluginTest):
         # akismet says spam
         MockAkismet.inject_comment_check(True)
         self.assertEqual(
-            (True, 'I\'m sorry, but your comment was rejected by the <a href="'
-             'http://akismet.com/">Akismet</a> spam filtering system.'),
+            (True,
+             'I\'m sorry, but your comment was rejected by the <a href="https://akismet.com/">Akismet</a> spam filtering system.'),
             akismetcomments.cb_comment_reject(self.args))
