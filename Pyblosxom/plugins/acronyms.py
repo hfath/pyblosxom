@@ -268,10 +268,10 @@ def cb_story(args):
     for reob, repl in acrolist:
         body = reob.sub(repl, body)
 
-    def matchrepl(matchobj):
+    def matchrepl1(matchobj):
         return tags[matchobj.group(0)]
 
-    body = TAG_DIGIT_RE.sub(matchrepl, body)
+    body = TAG_DIGIT_RE.sub(matchrepl1, body)
 
     entry["body"] = body
     return args
