@@ -75,7 +75,7 @@ This one is explicitly labeled an acronym::
 This one uses regular expression to match both ``UTF-8`` and
 ``UTF8``::
 
-    UTF\-?8 = 8-bit UCS/Unicode Transformation Format
+    r'UTF[\-]?8' = 8-bit UCS/Unicode Transformation Format
 
 An abbreviation is a series of characters followed by a period.  If
 it's not followed by a period, then you need to explicitly state that

@@ -55,10 +55,10 @@ from Pyblosxom import tools
 from Pyblosxom.memcache import memcache_decorator
 
 DAYMATCH = re.compile(
-    '([0-9]{4})-'
-    '([0-1][0-9])-'
-    '([0-3][0-9])'
-    '(-([0-2][0-9])-([0-5][0-9]))?.[\w]+$')
+    r'([0-9]{4})-'
+    r'([0-1][0-9])-'
+    r'([0-3][0-9])'
+    r'(-([0-2][0-9])-([0-5][0-9]))?.[\w]+$')
 
 @memcache_decorator('pyfilenamemtime')
 def get_mtime(filename):

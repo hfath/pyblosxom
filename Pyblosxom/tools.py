@@ -474,7 +474,7 @@ class Replacer:
 
                 r = r(*args)
 
-            elif len(inspect.getargspec(r)[0]) == 2:
+            elif len(inspect.getfullargspec(r)[0]) == 2:
                 r = r(request, vd)
 
             else:

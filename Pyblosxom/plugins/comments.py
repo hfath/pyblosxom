@@ -464,7 +464,8 @@ __license__ = "MIT"
 __registrytags__ = "1.4, 1.5, core"
 
 
-import cgi
+import html
+import urllib
 import glob
 import re
 import time
@@ -715,7 +716,7 @@ def write_comment(request, config, data, comment, encoding):
     cfn = os.path.join(cdir, entry['fn'] + "-" + comment['pubDate'] + "." + config['comment_draft_ext'])
 
     def make_xml_field(name, field):
-        return "<" + name + ">" + cgi.escape(field.get(name, "")) + "</"+name+">\n";
+        return "<" + name + ">" + html.escape(field.get(name, "")) + "</"+name+">\n";
 
     filedata = '<?xml version="1.0" encoding="%s"?>\n' % encoding
     filedata += "<item>\n"
@@ -737,7 +738,7 @@ def write_comment(request, config, data, comment, encoding):
     latest = None
     latest_filename = os.path.join(config['comment_dir'], LATEST_PICKLE_FILE)
     try:
-        latest = open(latest_filename, "w")
+        latest = open(latest_filename, "wb")
     except IOError:
         logger = tools.get_logger()
         logger.error("couldn't open latest comment pickle for writing")
@@ -1052,7 +1053,7 @@ def cb_prepare(args):
     # check to see if they have "showcomments=yes" in the querystring
     qstr = py_http.get('QUERY_STRING', None)
     if qstr is not None:
-        parsed_qs = cgi.parse_qs(qstr)
+        parsed_qs = urllib.parse.parse_qs(qstr)
         if 'showcomments' in parsed_qs:
             if parsed_qs['showcomments'][0] == 'yes':
                 data['display_comment_default'] = True
@@ -1383,6 +1384,6 @@ def cb_story_end(args):
             output.append(renderer.render_template(com, 'comment'))
         if not check_comments_disabled(config, entry):
             output.append(renderer.render_template(entry, 'comment-form'))
-        args['template'] = template + "".join(output)
+        args['template'] = template + "".join(map(str, output))
 
     return template

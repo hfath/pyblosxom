@@ -14,7 +14,7 @@ Tests for the comments plugin.
 from Pyblosxom.tests import PluginTest, FrozenTime, TIMESTAMP
 from Pyblosxom.plugins import comments
 
-import cgi
+import html
 import pickle
 import os
 
@@ -81,19 +81,19 @@ class TestComments(PluginTest):
 
         # check the files in the comments directory
         files = os.listdir(self.config['comment_dir'])
-        self.assert_(os.path.basename(self.comment_path()) in files)
-        self.assert_(comments.LATEST_PICKLE_FILE in files)
+        self.assertTrue(os.path.basename(self.comment_path()) in files)
+        self.assertTrue(comments.LATEST_PICKLE_FILE in files)
 
         # check the coment file's contents
         expected_lines = [
             '<?xml version="1.0" encoding="%s"?>\n' % encoding,
             '<item>\n',
-            '<description>%s</description>\n' % cgi.escape(expected_body),
+            '<description>%s</description>\n' % html.escape(expected_body),
             '<pubDate>%0.1f</pubDate>\n' % self.timestamp,
-            '<author>%s</author>\n' % cgi.escape(expected_author),
-            '<title>%s</title>\n' % cgi.escape(expected_title),
+            '<author>%s</author>\n' % html.escape(expected_author),
+            '<title>%s</title>\n' % html.escape(expected_title),
             '<source></source>\n',
-            '<link>%s</link>\n' % cgi.escape(expected_url),
+            '<link>%s</link>\n' % html.escape(expected_url),
             '<w3cdate>%s</w3cdate>\n' % self.timestamp_w3c,
             '<date>%s</date>\n' % self.timestamp_date,
             '<ipaddress>%s</ipaddress>\n' % ipaddress,
@@ -109,7 +109,7 @@ class TestComments(PluginTest):
         expected_lines.sort()
         actual_lines.sort()
         for expected, actual in zip(expected_lines, actual_lines):
-            self.assertEquals(expected, actual)
+            self.assertEqual(expected, actual)
 
         if delete_datadir:
             self.delete_datadir()
@@ -126,7 +126,7 @@ class TestComments(PluginTest):
         comments.cb_story(self.args)
         self.args['template'] = ''
         comments.cb_story_end(self.args)
-        self.assertEquals(expected, self.args['template'])
+        self.assertEqual(expected, self.args['template'])
 
         if delete_datadir:
             self.delete_datadir()
@@ -141,7 +141,7 @@ class TestComments(PluginTest):
             "</li>\n"
             "</ul>")
 
-        self.assertEquals(
+        self.assertEqual(
             comments.sanitize(ulbody),
             "<ul>"
             "<li>entry within a ul list</li>"
@@ -159,7 +159,7 @@ class TestComments(PluginTest):
             "</li>\n"
             "</ol>")
 
-        self.assertEquals(
+        self.assertEqual(
             comments.sanitize(ulbody),
             "<ol>"
             "<li>entry within a ol list</li>"
@@ -174,11 +174,11 @@ class TestComments(PluginTest):
         self.config = self.config_base
         comments.cb_start(self.args)
 
-        self.assertEquals(os.path.join(self.datadir, 'comments'),
+        self.assertEqual(os.path.join(self.datadir, 'comments'),
                           self.config['comment_dir'])
-        self.assertEquals('cmt', self.config['comment_ext'])
-        self.assertEquals('cmt', self.config['comment_draft_ext'])
-        self.assertEquals(0, self.config['comment_nofollow'])
+        self.assertEqual('cmt', self.config['comment_ext'])
+        self.assertEqual('cmt', self.config['comment_draft_ext'])
+        self.assertEqual(0, self.config['comment_nofollow'])
 
     def test_verify_installation(self):
         """verify_installation should check the comment dir and smtp
@@ -186,7 +186,7 @@ class TestComments(PluginTest):
         # comment_dir must exist
         assert not os.path.exists('/not/a/directory')
         self.config['comment_dir'] = '/not/a/directory'
-        self.assertEquals(0, comments.verify_installation(self.request))
+        self.assertEqual(0, comments.verify_installation(self.request))
         del self.config['comment_dir']
 
         # either all smtp config variables must be defined, or none
@@ -195,11 +195,11 @@ class TestComments(PluginTest):
         for smtp_var in smtp_vars:
             [self.config.pop(var, '') for var in smtp_vars]
             self.config[smtp_var] = 'abc'
-            self.assertEquals(0, comments.verify_installation(self.request))
+            self.assertEqual(0, comments.verify_installation(self.request))
 
         del self.config[smtp_vars[-1]]
 
-        self.assertEquals(1, comments.verify_installation(self.request))
+        self.assertEqual(1, comments.verify_installation(self.request))
 
     def test_check_comments_disabled(self):
         time = FrozenTime(TIMESTAMP)
@@ -259,26 +259,26 @@ class TestComments(PluginTest):
         # default is to not show comments
         del self.data['bl_type']
         comments.cb_prepare(self.args)
-        self.assertEquals(False, self.data['display_comment_default'])
+        self.assertEqual(False, self.data['display_comment_default'])
 
         # show them if the bl_type config var is 'file'
         self.data['bl_type'] = 'db'
         comments.cb_prepare(self.args)
-        self.assertEquals(False, self.data['display_comment_default'])
+        self.assertEqual(False, self.data['display_comment_default'])
 
         self.data['bl_type'] = 'file'
         comments.cb_prepare(self.args)
-        self.assertEquals(True, self.data['display_comment_default'])
+        self.assertEqual(True, self.data['display_comment_default'])
 
         # or if the query string has showcomments=yes
         del self.data['bl_type']
         self.request.add_http({'QUERY_STRING': 'x=yes&showcomments=no7&y=no'})
         comments.cb_prepare(self.args)
-        self.assertEquals(False, self.data['display_comment_default'])
+        self.assertEqual(False, self.data['display_comment_default'])
 
         self.request.add_http({'QUERY_STRING': 'x=yes&showcomments=yes&y=no'})
         comments.cb_prepare(self.args)
-        self.assertEquals(True, self.data['display_comment_default'])
+        self.assertEqual(True, self.data['display_comment_default'])
 
     def test_cb_prepare_new_comment(self):
         """A new comment should be packaged in XML and stored in a new file."""
@@ -289,7 +289,7 @@ class TestComments(PluginTest):
 
         # previewed comments shouldn't be stored
         self.comment(preview='yes')
-        self.assert_(not os.path.exists(self.comment_path()))
+        self.assertTrue(not os.path.exists(self.comment_path()))
 
     def test_cb_prepare_encoding(self):
         """If the blog_encoding config var is set, it should be used."""
@@ -300,7 +300,7 @@ class TestComments(PluginTest):
         necessary."""
         # html control characters should be stripped
         self.check_comment_file(url='<script arg=\'val"ue"\'>',
-                                expected_url='http://script arg=value')
+                                expected_url='https://script arg=value')
 
         # http:// should only be added if there isn't already a protocol
         self.check_comment_file(url='xmpp:me@jabber.org')
@@ -311,7 +311,7 @@ class TestComments(PluginTest):
         body = '<a href="/dest">x</a>'
 
         # default is off
-        self.assert_(self.config['comment_nofollow'] == False)
+        self.assertTrue(self.config['comment_nofollow'] == False)
         self.check_comment_file(body=body)
 
         # turned on
@@ -337,9 +337,9 @@ class TestComments(PluginTest):
                                   ):
             self.inject_callback('comment_reject', lambda: return_value)
             self.comment()
-            self.assert_(not os.path.exists(self.comment_path()))
-            self.assertEquals(True, self.data['rejected'])
-            self.assertEquals(msg, self.data['comment_message'])
+            self.assertTrue(not os.path.exists(self.comment_path()))
+            self.assertEqual(True, self.data['rejected'])
+            self.assertEqual(msg, self.data['comment_message'])
 
         del self.data['rejected']
 
@@ -348,8 +348,8 @@ class TestComments(PluginTest):
             self.inject_callback('comment_reject', lambda: return_value)
             self.check_comment_file()
 
-            self.assert_('rejected' not in self.data)
-            self.assertEquals('Comment submitted.  Thanks!',
+            self.assertTrue('rejected' not in self.data)
+            self.assertEqual('Comment submitted.  Thanks!',
                               self.data['comment_message'])
 
     def test_cb_prepare_latest_pickle(self):
@@ -357,8 +357,8 @@ class TestComments(PluginTest):
         self.comment()
         latest_path = os.path.join(self.config['comment_dir'],
                                    comments.LATEST_PICKLE_FILE)
-        timestamp = cPickle.load(open(latest_path))
-        self.assertEquals(self.timestamp, timestamp)
+        timestamp = pickle.load(open(latest_path, "rb"))
+        self.assertEqual(self.timestamp, timestamp)
 
     def test_cb_prepare_draft(self):
         """For draft support, comment_draft_ext should override comment_ext."""
@@ -370,15 +370,15 @@ class TestComments(PluginTest):
         template = self.args['template']
 
         # only expand if we have a comment-head template
-        self.assert_('comment-head' not in self.renderer.flavour)
-        self.assertEquals(template, comments.cb_head(self.args))
-        self.assert_(not self.entry.has_key('title'))
+        self.assertTrue('comment-head' not in self.renderer.flavour)
+        self.assertEqual(template, comments.cb_head(self.args))
+        self.assertTrue(not self.entry.has_key('title'))
 
         # don't expand if we're displaying more than one entry
         self.renderer.flavour['comment-head'] = ''
         self.renderer.set_content([self.entry, self.entry])
-        self.assertEquals(template, comments.cb_head(self.args))
-        self.assert_(not self.entry.has_key('title'))
+        self.assertEqual(template, comments.cb_head(self.args))
+        self.assertTrue(not self.entry.has_key('title'))
 
         # we have comment-head and only one entry. expand!
         class MockEntry(dict):
@@ -390,17 +390,17 @@ class TestComments(PluginTest):
 
         self.renderer.set_content([self.entry])
         self.args['entry'] = {'entry_list': [mock_entry]}
-        self.assertEquals(template, comments.cb_head(self.args))
-        self.assertEquals('title', mock_entry.key)
+        self.assertEqual(template, comments.cb_head(self.args))
+        self.assertEqual('title', mock_entry.key)
 
     def test_cb_renderer(self):
         """cb_renderer() should return an AjaxRenderer for ajax
         requests."""
-        self.assert_(not isinstance(comments.cb_renderer(self.args),
+        self.assertTrue(not isinstance(comments.cb_renderer(self.args),
                                     comments.AjaxRenderer))
 
         self.set_form_data({'ajax': 'true'})
-        self.assert_(isinstance(comments.cb_renderer(self.args),
+        self.assertTrue(isinstance(comments.cb_renderer(self.args),
                                 comments.AjaxRenderer))
 
     def test_ajax_renderer(self):
@@ -413,13 +413,13 @@ class TestComments(PluginTest):
 
         # a comment preview
         self.set_form_data({'ajax': 'preview'})
-        self.assertEquals(True, should_output('comment-preview'))
-        self.assertEquals(False, should_output('story'))
+        self.assertEqual(True, should_output('comment-preview'))
+        self.assertEqual(False, should_output('story'))
 
         # a comment that was just posted
         self.set_form_data({'ajax': 'post'})
-        self.assertEquals(False, should_output('story'))
-        self.assertEquals(True, should_output('comment'))
+        self.assertEqual(False, should_output('story'))
+        self.assertEqual(True, should_output('comment'))
 
     def test_num_comments(self):
         """cb_story() should count the number of comments."""
@@ -429,7 +429,7 @@ class TestComments(PluginTest):
             if self.entry.has_key("num_comments"):
                 self.entry["num_comments"] = None
             comments.cb_story(self.args)
-            self.assertEquals(expected, self.entry['num_comments'])
+            self.assertEqual(expected, self.entry['num_comments'])
 
         check_num_comments(0)
         self.comment()
@@ -445,9 +445,9 @@ class TestComments(PluginTest):
         def check_for_comments(expected):
             args_template = self.args['template']
             comments.cb_story(self.args)
-            self.assertEquals(expected, self.args['template'])
+            self.assertEqual(expected, self.args['template'])
             comments.cb_story_end(self.args)
-            self.assertEquals(expected, self.args['template'])
+            self.assertEqual(expected, self.args['template'])
             self.args['template'] = args_template
 
         # this is required by the comments plugin
@@ -487,9 +487,9 @@ class TestComments(PluginTest):
     def test_cb_story_comment_story_template(self):
         # check that cb_story() appends the comment-story template
         self.data['display_comment_default'] = True
-        self.assert_(self.renderer.flavour['comment-story'] == 'comment-story')
+        self.assertTrue(self.renderer.flavour['comment-story'] == 'comment-story')
         comments.cb_story(self.args)
-        self.assertEquals('template starts:comment-story',
+        self.assertEqual('template starts:comment-story',
                           self.args['template'])
 
     def test_cb_story_end_renders_comments(self):
@@ -501,8 +501,8 @@ class TestComments(PluginTest):
         # no comments.  check both cb_story_end's return value and
         # args['template'].
         self.args['template'] = 'foo'
-        self.assertEquals('foo', comments.cb_story_end(self.args))
-        self.assertEquals('foo', self.args['template'])
+        self.assertEqual('foo', comments.cb_story_end(self.args))
+        self.assertEqual('foo', self.args['template'])
 
         # one comment
         self.renderer.flavour['comment'] = '$cmt_time '
@@ -571,7 +571,7 @@ class TestComments(PluginTest):
         """Test the cmt_optionally_linked_author template variable."""
         self.renderer.flavour['comment'] = '$cmt_optionally_linked_author'
 
-        self.assert_(self.config['comment_nofollow'] == False)
+        self.assertTrue(self.config['comment_nofollow'] == False)
         self.check_comment_output('me', author='me', url='')
         self.check_comment_output('<a href="http://home">me</a>',
                                   author='me', url='home')
