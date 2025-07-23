@@ -941,10 +941,10 @@ def sanitize(body):
     body=re.sub('\r\n?', '\n', body)
 
     # naked urls become hypertext links
-    body=re.sub(r'(^|[\\s.:;?\\-\\]<])' +
-                r'(http://[-\\w;/?:@&=+$.!~*\'()%,#]+[\\w/])' +
-                r'(?=$|[\\s.:;?\\-\\[\\]>])',
-                r'\\1<a href="\\2">\\2</a>', body)
+    body=re.sub(r'(^|[\s.:;?\-\]<])' +
+                r'(http://[-\w;/?:@&=+$.!~*\'()%,#]+[\w/])' +
+                r'(?=$|[\s.:;?\-\[\]>])',
+                r'\1<a href="\2">\2</a>', body)
 
     # html characters used in text become escaped
     body = escape(body)
@@ -953,9 +953,9 @@ def sanitize(body):
     # <abbr>, <acronym>, <big>, <cite>, <code>, <dfn>, <kbd>, <pre>, <small>
     # <strong>, <sub>, <sup>, <tt>, <var>, <ul>, <ol>, <li>
     body = re.sub(r'&lt;a href="([^"]*)"&gt;([^&]*)&lt;/a&gt;',
-                  r'<a href="\\1">\\2</a>', body)
+                  r'<a href="\1">\2</a>', body)
     body = re.sub(r'&lt;a href=\'([^\']*)\'&gt;([^&]*)&lt;/a&gt;',
-                  r'<a href="\\1">\\2</a>', body)
+                  r'<a href="\1">\2</a>', body)
     body = re.sub(r'&lt;em&gt;([^&]*)&lt;/em&gt;', r'<em>\1</em>', body)
     body = re.sub(r'&lt;i&gt;([^&]*)&lt;/i&gt;', r'<i>\1</i>', body)
     body = re.sub(r'&lt;b&gt;([^&]*)&lt;/b&gt;', r'<b>\1</b>', body)
