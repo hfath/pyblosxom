@@ -573,10 +573,10 @@ class TestComments(PluginTest):
 
         self.assertTrue(self.config['comment_nofollow'] == False)
         self.check_comment_output('me', author='me', url='')
-        self.check_comment_output('<a href="http://home">me</a>',
+        self.check_comment_output('<a href="https://home">me</a>',
                                   author='me', url='home')
 
         self.config['comment_nofollow'] = True
         self.check_comment_output('me', author='me', url='')
-        self.check_comment_output('<a rel="nofollow" href="http://home">me</a>',
+        self.check_comment_output('<a rel="nofollow" href="https://home">me</a>',
                                   author='me', url='home')
