@@ -557,7 +557,7 @@ def createhtmlmail(html, headers):
     out = io.StringIO() # output buffer for our message
     htmlin = io.StringIO(html)
 
-    text = re.sub('<.*?>', '', html)
+    text = re.sub(r'<.*?>', r'', html)
     txtin = io.StringIO(text)
 
     # FIXME MimeWriter is deprecated as of Python 2.6
@@ -926,9 +926,9 @@ def escape_smtp_commands(s):
     """
     def repl_fn(mo):
         return '<span>'+mo.group(0)+'</span>'
-    s = re.sub('([Tt]o:.*)',repl_fn,s)
-    s = re.sub('([Ff]rom:.*)',repl_fn,s)
-    s = re.sub('([Ss]ubject:.*)',repl_fn,s)
+    s = re.sub(r'([Tt]o:.*)',repl_fn,s)
+    s = re.sub(r'([Ff]rom:.*)',repl_fn,s)
+    s = re.sub(r'([Ss]ubject:.*)',repl_fn,s)
     return s
 
 
@@ -936,14 +936,14 @@ def sanitize(body):
     """
     This code shamelessly lifted from Sam Ruby's mombo/post.py
     """
-    body=re.sub(r'\s+$','',body)
-    body=re.sub('\r\n?','\n', body)
+    body=re.sub(r'\s+$', '',body)
+    body=re.sub('\r\n?', '\n', body)
 
     # naked urls become hypertext links
-    body=re.sub('(^|[\\s.:;?\\-\\]<])' +
-                '(http://[-\\w;/?:@&=+$.!~*\'()%,#]+[\\w/])' +
-                '(?=$|[\\s.:;?\\-\\[\\]>])',
-                '\\1<a href="\\2">\\2</a>',body)
+    body=re.sub(r'(^|[\\s.:;?\\-\\]<])' +
+                r'(http://[-\\w;/?:@&=+$.!~*\'()%,#]+[\\w/])' +
+                r'(?=$|[\\s.:;?\\-\\[\\]>])',
+                r'\\1<a href="\\2">\\2</a>', body)
 
     # html characters used in text become escaped
     body = escape(body)
@@ -951,41 +951,41 @@ def sanitize(body):
     # passthru <a href>, <em>, <i>, <b>, <blockquote>, <br/>, <p>,
     # <abbr>, <acronym>, <big>, <cite>, <code>, <dfn>, <kbd>, <pre>, <small>
     # <strong>, <sub>, <sup>, <tt>, <var>, <ul>, <ol>, <li>
-    body = re.sub('&lt;a href="([^"]*)"&gt;([^&]*)&lt;/a&gt;',
-                  '<a href="\\1">\\2</a>', body)
-    body = re.sub('&lt;a href=\'([^\']*)\'&gt;([^&]*)&lt;/a&gt;',
-                  '<a href="\\1">\\2</a>', body)
-    body = re.sub('&lt;em&gt;([^&]*)&lt;/em&gt;', '<em>\\1</em>', body)
-    body = re.sub('&lt;i&gt;([^&]*)&lt;/i&gt;', '<i>\\1</i>', body)
-    body = re.sub('&lt;b&gt;([^&]*)&lt;/b&gt;', '<b>\\1</b>', body)
-    body = re.sub('&lt;blockquote&gt;([^&]*)&lt;/blockquote&gt;',
-                  '<blockquote>\\1</blockquote>', body)
-    body = re.sub('&lt;br\s*/?&gt;\n?', '\n', body)
+    body = re.sub(r'&lt;a href="([^"]*)"&gt;([^&]*)&lt;/a&gt;',
+                  r'<a href="\\1">\\2</a>', body)
+    body = re.sub(r'&lt;a href=\'([^\']*)\'&gt;([^&]*)&lt;/a&gt;',
+                  r'<a href="\\1">\\2</a>', body)
+    body = re.sub(r'&lt;em&gt;([^&]*)&lt;/em&gt;', r'<em>\1</em>', body)
+    body = re.sub(r'&lt;i&gt;([^&]*)&lt;/i&gt;', r'<i>\1</i>', body)
+    body = re.sub(r'&lt;b&gt;([^&]*)&lt;/b&gt;', r'<b>\1</b>', body)
+    body = re.sub(r'&lt;blockquote&gt;([^&]*)&lt;/blockquote&gt;',
+                  r'<blockquote>\1</blockquote>', body)
+    body = re.sub(r'&lt;br\s*/?&gt;\n?', r'\n', body)
 
-    body = re.sub('&lt;abbr&gt;([^&]*)&lt;/abbr&gt;', '<abbr>\\1</abbr>', body)
-    body = re.sub('&lt;acronym&gt;([^&]*)&lt;/acronym&gt;', '<acronym>\\1</acronym>', body)
-    body = re.sub('&lt;big&gt;([^&]*)&lt;/big&gt;', '<big>\\1</big>', body)
-    body = re.sub('&lt;cite&gt;([^&]*)&lt;/cite&gt;', '<cite>\\1</cite>', body)
-    body = re.sub('&lt;code&gt;([^&]*)&lt;/code&gt;', '<code>\\1</code>', body)
-    body = re.sub('&lt;dfn&gt;([^&]*)&lt;/dfn&gt;', '<dfn>\\1</dfn>', body)
-    body = re.sub('&lt;kbd&gt;([^&]*)&lt;/kbd&gt;', '<kbd>\\1</kbd>', body)
-    body = re.sub('&lt;pre&gt;([^&]*)&lt;/pre&gt;', '<pre>\\1</pre>', body)
-    body = re.sub('&lt;small&gt;([^&]*)&lt;/small&gt;', '<small>\\1</small>', body)
-    body = re.sub('&lt;strong&gt;([^&]*)&lt;/strong&gt;', '<strong>\\1</strong>', body)
-    body = re.sub('&lt;sub&gt;([^&]*)&lt;/sub&gt;', '<sub>\\1</sub>', body)
-    body = re.sub('&lt;sup&gt;([^&]*)&lt;/sup&gt;', '<sup>\\1</sup>', body)
-    body = re.sub('&lt;tt&gt;([^&]*)&lt;/tt&gt;', '<tt>\\1</tt>', body)
-    body = re.sub('&lt;var&gt;([^&]*)&lt;/var&gt;', '<var>\\1</var>', body)
+    body = re.sub(r'&lt;abbr&gt;([^&]*)&lt;/abbr&gt;', r'<abbr>\1</abbr>', body)
+    body = re.sub(r'&lt;acronym&gt;([^&]*)&lt;/acronym&gt;', r'<acronym>\1</acronym>', body)
+    body = re.sub(r'&lt;big&gt;([^&]*)&lt;/big&gt;', r'<big>\1</big>', body)
+    body = re.sub(r'&lt;cite&gt;([^&]*)&lt;/cite&gt;', r'<cite>\1</cite>', body)
+    body = re.sub(r'&lt;code&gt;([^&]*)&lt;/code&gt;', r'<code>\1</code>', body)
+    body = re.sub(r'&lt;dfn&gt;([^&]*)&lt;/dfn&gt;', r'<dfn>\1</dfn>', body)
+    body = re.sub(r'&lt;kbd&gt;([^&]*)&lt;/kbd&gt;', r'<kbd>\1</kbd>', body)
+    body = re.sub(r'&lt;pre&gt;([^&]*)&lt;/pre&gt;', r'<pre>\1</pre>', body)
+    body = re.sub(r'&lt;small&gt;([^&]*)&lt;/small&gt;', r'<small>\1</small>', body)
+    body = re.sub(r'&lt;strong&gt;([^&]*)&lt;/strong&gt;', r'<strong>\1</strong>', body)
+    body = re.sub(r'&lt;sub&gt;([^&]*)&lt;/sub&gt;', r'<sub>\1</sub>', body)
+    body = re.sub(r'&lt;sup&gt;([^&]*)&lt;/sup&gt;', r'<sup>\1</sup>', body)
+    body = re.sub(r'&lt;tt&gt;([^&]*)&lt;/tt&gt;', r'<tt>\1</tt>', body)
+    body = re.sub(r'&lt;var&gt;([^&]*)&lt;/var&gt;', r'<var>\1</var>', body)
 
     # handle lists
-    body = re.sub('&lt;ul&gt;\s*', '<ul>', body)
-    body = re.sub('&lt;/ul&gt;\s*', '</ul>', body)
-    body = re.sub('&lt;ol&gt;\s*', '<ol>', body)
-    body = re.sub('&lt;/ol&gt;\s*', '</ol>', body)
-    body = re.sub('&lt;li&gt;([^&]*)&lt;/li&gt;\s*', '<li>\\1</li>', body)
-    body = re.sub('&lt;li&gt;', '<li>', body)
+    body = re.sub(r'&lt;ul&gt;\s*', r'<ul>', body)
+    body = re.sub(r'&lt;/ul&gt;\s*', r'</ul>', body)
+    body = re.sub(r'&lt;ol&gt;\s*', r'<ol>', body)
+    body = re.sub(r'&lt;/ol&gt;\s*', r'</ol>', body)
+    body = re.sub(r'&lt;li&gt;([^&]*)&lt;/li&gt;\s*', r'<li>\1</li>', body)
+    body = re.sub(r'&lt;li&gt;', r'<li>', body)
 
-    body = re.sub('&lt;/?p&gt;', '\n\n', body).strip()
+    body = re.sub(r'&lt;/?p&gt;', r'\n\n', body).strip()
 
     # wiki like support: _em_, *b*, [url title]
     body = re.sub(r'\b_(\w.*?)_\b', r'<em>\1</em>', body)
@@ -1012,7 +1012,7 @@ def sanitize(body):
     chunk = re.split('\n\n+', ''.join(chunk))
     body = re.sub('\n', '<br />\n', body)
     body = re.compile('<p>(<ul>.*?</ul>)\r</p>?', re.M).sub(r'\1', body)
-    body = re.compile('<p>(<blockquote>.*?</blockquote>)</p>?', re.M).sub(r'\1', body)
+    body = re.compile(r'<p>(<blockquote>.*?</blockquote>)</p>?', re.M).sub(r'\1', body)
     body = re.sub('\r', '\n', body)
     body = re.sub('  +', '&nbsp; ', body)
 
@@ -1246,7 +1246,7 @@ def get_content_type_charset():
     Returns None if the Content-Type header doesn't specify a charset.
     """
     content_type = os.environ.get('CONTENT_TYPE', '')
-    match = re.match('.+; charset=([^;]+)', content_type)
+    match = re.match(r'.+; charset=([^;]+)', content_type)
     if match:
         return match.group(1)
     else:

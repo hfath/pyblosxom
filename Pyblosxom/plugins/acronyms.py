@@ -203,7 +203,7 @@ def build_acronyms(lines):
         firstpart = line[0].strip()
 
         try:
-            firstpartre = re.compile("(\\b" + firstpart + "\\b)")
+            firstpartre = re.compile(r"(\b" + firstpart + r"\b)")
         except re.error:
             logger = tools.get_logger()
             logger.error("acronyms: '%s' is not a regular expression",
@@ -242,8 +242,8 @@ def cb_start(args):
     request.get_data()["acronyms"] = build_acronyms(lines)
 
 
-TAG_RE = re.compile("<\D.*?>")
-TAG_DIGIT_RE = re.compile("<\d+?>")
+TAG_RE = re.compile(r"<\D.*?>")
+TAG_DIGIT_RE = re.compile(r"<\d+?>")
 
 
 def cb_story(args):

@@ -204,7 +204,7 @@ def cb_story(args):
     excluding, either the first opening tag, or newline. We assume
     that all this tag wrapping will stay on the same line.
 
-    XXX We might insist on the breakpoint occurring on the beginning
+    We might insist on the breakpoint occurring on the beginning
         of a line of its own.
     """
     match = re.search('(' + breakpoint + ')(.*?)(<[ ]*?[^/].+|[\n])',

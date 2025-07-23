@@ -122,7 +122,7 @@ import os, re
 import datetime,time
 import urllib
 
-filerex = re.compile("^([0-9]{4})-([0-9]{2})-([0-9]{2})")
+filerex = re.compile(r"^([0-9]{4})-([0-9]{2})-([0-9]{2})")
 
 # Templates with placeholders
 templates = {}

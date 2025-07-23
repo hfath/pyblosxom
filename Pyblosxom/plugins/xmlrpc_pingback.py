@@ -167,8 +167,8 @@ def pingback(request, source, target):
                         body = item['content_encoded'].strip()
                     if 'description' in item:
                         body = item['description'].strip() or body
-                    body = re.compile('<.*?>', re.S).sub('', body)
-                    body = re.sub('\s+', ' ', body)
+                    body = re.compile(r'<.*?>', re.S).sub('', body)
+                    body = re.sub(r'\s+', ' ', body)
                     body = body[:body.rfind(' ', 0, 250)][:250] + " ...<br />"
     except:
         pass
